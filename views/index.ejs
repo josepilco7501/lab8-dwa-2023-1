@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Usuarios</title>
+  <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif; /* Cambia la fuente de letra */
+    }
+
+    .container {
+      max-width: 800px;
+      margin-top: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    form button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    hr {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Usuarios</h1>
+    <form action="/users" method="POST">
+      <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Usuario</button>
+    </form>
+    <hr>
+    <h2>Lista de Usuarios</h2>
+    <ul class="list-unstyled">
+      <% users.forEach((user) => { %>
+        <li>
+          <%= user.name %> (<%= user.email %>)
+          <a href="/users/edit/<%= user._id %>" class="btn btn-sm btn-primary">Editar</a>
+          <a href="/users/delete/<%= user._id %>" class="btn btn-sm btn-danger">Eliminar</a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
